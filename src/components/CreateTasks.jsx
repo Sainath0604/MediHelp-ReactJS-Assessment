@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToTask } from "../toolkit/Reducer";
+import { addToTask, emptyTask } from "../toolkit/Reducer";
 import { CreateIcon } from "../icons/icons";
 
 function CreateTasks() {
@@ -38,11 +38,32 @@ function CreateTasks() {
           deadline: deadline,
         })
       );
+
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks.push({
+        id: Date.now(),
+        title: title,
+        description: description,
+        status: status,
+        deadline: deadline,
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+
+      setTitle("");
+      setDescription("");
+      setStatus("To Do");
+      setDeadline("");
     } catch (error) {
       console.log("error");
     }
   }
-
+  useEffect(() => {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    if (tasks.length > 0) {
+      dispatch(emptyTask()); // Clear the Redux store first
+      tasks.forEach((task) => dispatch(addToTask(task)));
+    }
+  }, []);
   return (
     <div className=" w-11/12 p-5">
       <div className="mb-2 flex min-h-full min-w-full flex-col gap-y-2 border p-2">
