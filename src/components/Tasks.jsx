@@ -52,16 +52,16 @@ function Tasks() {
       <div className="flex flex-col gap-4 p-2">
         {task.map((item) => (
           <div
-            className="w-full border p-2 lg:w-[35vw] bg-[#f6f9fa] rounded-lg text-[#903d2f]"
+            className="w-full border p-2 lg:w-[45vw] bg-[#f6f9fa] rounded-lg text-[#903d2f]"
             key={item.id}
           >
             {editedTask && editedTask.id === item.id ? (
-              <div className="flex flex-row justify-between gap-8">
+              <div className="flex flex-col lg:flex-row justify-between gap-8 p-5">
                 <div className="flex flex-col gap-2 p-2">
                   <div className="flex gap-2 items-center ">
                     <label className="mr-2 w-20">Title:</label>
                     <input
-                      className="border rounded-lg p-2 "
+                      className="border rounded-lg p-2 text-black"
                       type="text"
                       value={editedTask.title}
                       onChange={(e) =>
@@ -69,12 +69,11 @@ function Tasks() {
                       }
                     />
                   </div>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex gap-2">
                     <label className="mr-2 w-20">Description:</label>
                     <span>
                       <textarea
-                        cols={23}
-                        className="border rounded-lg p-2"
+                        className="border rounded-lg p-2 w-52 lg:w-80 max-h-[40vh] min-h-[20vh] text-black"
                         type="text"
                         value={editedTask.description}
                         onChange={(e) =>
@@ -89,7 +88,7 @@ function Tasks() {
                   <div className="flex gap-2 items-center">
                     <label className="mr-2 w-20">Status:</label>
                     <select
-                      className="border rounded-lg p-2"
+                      className="border rounded-lg p-2 text-black"
                       value={editedTask.status}
                       onChange={(e) =>
                         setEditedTask({ ...editedTask, status: e.target.value })
@@ -103,7 +102,7 @@ function Tasks() {
                   <div className="flex gap-2 items-center">
                     <label className="mr-2 w-20">Deadline:</label>
                     <input
-                      className="border rounded-lg p-2 "
+                      className="border rounded-lg p-2 text-black"
                       type="date"
                       value={editedTask.deadline}
                       onChange={(e) =>
@@ -115,24 +114,24 @@ function Tasks() {
                     />
                   </div>
                 </div>
-                <div className=" flex flex-col gap-4">
+                <div className=" flex flex-col lg:gap-4">
                   <div className="flex justify-center">
-                    <h1>Actions</h1>
+                    <h1 className="hidden lg:block">Actions</h1>
                   </div>
-                  <div className="flex flex-row gap-2">
+                  <div className="flex flex-row gap-6 lg:gap-2 justify-center">
                     <button
-                      className="rounded-full border p-2 bg-[#ee7c68] text-[#fff] "
+                      className="rounded-full border bg-[#ee7c68] text-[#fff]"
                       onClick={handleUpdate}
                     >
-                      <div className="flex gap-2 items-center">
-                        <span>Save</span>
-                        <span className="text-[#fff]">
+                      <div className="flex gap-1 items-center">
+                        <span className="px-2 py-1">Save</span>
+                        <span className="text-[#fff] px-2 py-1">
                           <UpdateIcon className="text-[#fff]" />
                         </span>
                       </div>
                     </button>
                     <button
-                      className="rounded-full border bg-[#ee7c68] text-[#fff] p-2 "
+                      className="rounded-full border bg-[#ee7c68] text-[#fff] p-2"
                       onClick={() => setEditedTask(null)}
                     >
                       <CancelIcon />
@@ -172,7 +171,7 @@ function Tasks() {
                       <DeleteIcon />
                     </button>
                     <button
-                      className="rounded-full border bg-[#ee7c68] text-[#fff]  p-2"
+                      className="rounded-full border bg-[#ee7c68] text-[#fff] p-2"
                       onClick={() => handleEdit(item.id)}
                     >
                       <EditIcon />

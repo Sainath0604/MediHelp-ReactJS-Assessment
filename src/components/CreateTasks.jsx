@@ -60,35 +60,34 @@ function CreateTasks() {
   useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     if (tasks.length > 0) {
-      dispatch(emptyTask()); // Clear the Redux store first
+      dispatch(emptyTask());
       tasks.forEach((task) => dispatch(addToTask(task)));
     }
   }, []);
   return (
-    <div className=" w-11/12 p-5">
-      <div className="mb-2 flex  min-w-full flex-col gap-y-2  p-2 bg-[#f6f9fa] rounded-lg">
-        <div className="flex justify-center  p-1">
+    <div className=" lg:w-11/12 p-5 flex justify-center">
+      <div className="mb-2 flex  min-w-full flex-col gap-y-2 p-2 bg-[#f6f9fa] rounded-lg ">
+        <div className="flex justify-center p-1">
           <h1 className="text-[#ee7c68] text-2xl">Create tasks</h1>
         </div>
-        <div className="flex flex-col items-center text-[#b44e3c] gap-y-2  p-2">
+        <div className="flex flex-col items-center text-[#b44e3c] gap-y-2 p-2">
           <div>
-            <div className="flex flex-row  p-2">
-              <div className="mr-2 w-24">Title:</div>
+            <div className="flex flex-row p-2">
+              <div className="mr-2 w-20 lg:w-24">Title:</div>
               <input
                 value={title}
                 type="text"
                 placeholder=" title"
-                className="border rounded-lg p-2"
+                className="border rounded-lg p-2 text-black"
                 onChange={handleTitle}
               />
             </div>
             <div className="flex flex-row  p-2">
-              <div className="mr-2 w-24">Description: </div>
+              <div className="mr-2 w-20 lg:w-24">Description: </div>
               <div>
                 <textarea
                   value={description}
-                  cols={40}
-                  className="max-h-[40vh] min-h-[20vh] border rounded-lg p-2"
+                  className="max-h-[40vh] min-h-[20vh] border rounded-lg p-2 w-52 lg:w-80 text-black"
                   type="text"
                   placeholder=" Description"
                   onChange={handleDescription}
@@ -96,9 +95,9 @@ function CreateTasks() {
               </div>
             </div>
             <div className="flex flex-row  p-2">
-              <div className="mr-2 w-24">Status:</div>
+              <div className="mr-2 w-20  lg:w-24">Status:</div>
               <select
-                className="border rounded-lg p-2"
+                className="border rounded-lg p-2 text-black"
                 name="status"
                 id="status"
                 value={status}
@@ -109,19 +108,19 @@ function CreateTasks() {
                 <option value="Completed">Completed</option>
               </select>
             </div>
-            <div className="flex flex-row  p-2">
-              <div className="mr-2 w-24">Deadline:</div>
+            <div className="flex flex-row p-2">
+              <div className="mr-2 w-20 lg:w-24">Deadline:</div>
               <input
                 value={deadline}
                 type="date"
                 placeholder=" date"
-                className="border rounded-lg p-2"
+                className="border rounded-lg p-2 text-black"
                 onChange={handleDeadline}
               />
             </div>
           </div>
         </div>
-        <div className="mb-2 flex  justify-center  p-1">
+        <div className="mb-2 flex  justify-center p-1">
           <button
             className="flex flex-row items-center gap-2 bg-[#ee7c68] text-[#fff] p-2 rounded-md"
             onClick={handleAddTask}
