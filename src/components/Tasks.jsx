@@ -48,17 +48,20 @@ function Tasks() {
 
   return (
     <div className=" p-5">
-      <h1 className="text-center">Tasks</h1>
+      <h1 className="text-center text-[#d96b58] text-3xl">Tasks</h1>
       <div className="flex flex-col gap-4 p-2">
         {task.map((item) => (
-          <div className="w-full border p-2 lg:w-[30vw]" key={item.id}>
+          <div
+            className="w-full border p-2 lg:w-[35vw] bg-[#f6f9fa] rounded-lg text-[#903d2f]"
+            key={item.id}
+          >
             {editedTask && editedTask.id === item.id ? (
               <div className="flex flex-row justify-between gap-8">
-                <div className="flex flex-col gap-2">
-                  <div>
-                    <label className="mr-2">title:</label>
+                <div className="flex flex-col gap-2 p-2">
+                  <div className="flex gap-2 items-center ">
+                    <label className="mr-2 w-20">Title:</label>
                     <input
-                      className="border"
+                      className="border rounded-lg p-2 "
                       type="text"
                       value={editedTask.title}
                       onChange={(e) =>
@@ -66,11 +69,12 @@ function Tasks() {
                       }
                     />
                   </div>
-                  <div className="flex ">
-                    <span className="mr-2">description:</span>
+                  <div className="flex gap-2 items-center">
+                    <label className="mr-2 w-20">Description:</label>
                     <span>
                       <textarea
-                        className="border"
+                        cols={23}
+                        className="border rounded-lg p-2"
                         type="text"
                         value={editedTask.description}
                         onChange={(e) =>
@@ -82,10 +86,10 @@ function Tasks() {
                       />
                     </span>
                   </div>
-                  <div>
-                    <label className="mr-2">status:</label>
+                  <div className="flex gap-2 items-center">
+                    <label className="mr-2 w-20">Status:</label>
                     <select
-                      className="border p-1"
+                      className="border rounded-lg p-2"
                       value={editedTask.status}
                       onChange={(e) =>
                         setEditedTask({ ...editedTask, status: e.target.value })
@@ -96,10 +100,10 @@ function Tasks() {
                       <option value="Completed">Completed</option>
                     </select>
                   </div>
-                  <div>
-                    <label className="mr-2">deadline:</label>
+                  <div className="flex gap-2 items-center">
+                    <label className="mr-2 w-20">Deadline:</label>
                     <input
-                      className="border p-1"
+                      className="border rounded-lg p-2 "
                       type="date"
                       value={editedTask.deadline}
                       onChange={(e) =>
@@ -117,18 +121,18 @@ function Tasks() {
                   </div>
                   <div className="flex flex-row gap-2">
                     <button
-                      className="rounded-full border border-sky-300 p-2"
+                      className="rounded-full border p-2 bg-[#ee7c68] text-[#fff] "
                       onClick={handleUpdate}
                     >
                       <div className="flex gap-2 items-center">
                         <span>Save</span>
-                        <span>
-                          <UpdateIcon />
+                        <span className="text-[#fff]">
+                          <UpdateIcon className="text-[#fff]" />
                         </span>
                       </div>
                     </button>
                     <button
-                      className="rounded-full border border-sky-300 p-2 "
+                      className="rounded-full border bg-[#ee7c68] text-[#fff] p-2 "
                       onClick={() => setEditedTask(null)}
                     >
                       <CancelIcon />
@@ -137,23 +141,23 @@ function Tasks() {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-row justify-between gap-8">
+              <div className="flex flex-row justify-between gap-8 p-2">
                 <div>
-                  <h3>
-                    <span>title:</span>
-                    <span>{item.title}</span>
+                  <h3 className="p-2">
+                    <span>Title: </span>
+                    <span className="text-[#000]">{item.title}</span>
                   </h3>
-                  <p>
-                    <span>description:</span>
-                    <span>{item.description}</span>
+                  <p className="p-2">
+                    <span>Description: </span>
+                    <span className="text-[#000]">{item.description}</span>
                   </p>
-                  <p>
-                    <span>Status:</span>
-                    <span>{item.status}</span>
+                  <p className="p-2">
+                    <span>Status: </span>
+                    <span className="text-[#000]">{item.status}</span>
                   </p>
-                  <p>
-                    <span>Deadline:</span>
-                    <span>{item.deadline}</span>
+                  <p className="p-2">
+                    <span>Deadline: </span>
+                    <span className="text-[#000]"> {item.deadline}</span>
                   </p>
                 </div>
                 <div className="flex flex-col gap-4">
@@ -162,13 +166,13 @@ function Tasks() {
                   </div>
                   <div className="flex flex-row gap-2">
                     <button
-                      className="rounded-full border border-sky-300 p-2"
+                      className="rounded-full border bg-[#ee7c68] text-[#fff]  p-2"
                       onClick={() => handleDelete(item.id)}
                     >
                       <DeleteIcon />
                     </button>
                     <button
-                      className="rounded-full border border-sky-300 p-2"
+                      className="rounded-full border bg-[#ee7c68] text-[#fff]  p-2"
                       onClick={() => handleEdit(item.id)}
                     >
                       <EditIcon />

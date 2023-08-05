@@ -4,7 +4,7 @@ import Tasks from "./Tasks";
 function Home() {
   return (
     <div>
-      <div className=" flex min-h-screen w-full flex-col lg:flex-row ">
+      <div className=" flex min-h-screen w-full flex-col lg:flex-row bg-[#efdbd4]">
         <div className="top-0 flex flex-grow justify-center p-5 lg:fixed lg:bottom-0 lg:left-0 lg:w-1/2">
           <CreateTasks />
         </div>
