@@ -4,7 +4,7 @@ import "./tailwind.css";
 
 function App() {
   return (
-    <div className="text-3xl text-red-500">
+    <div>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
