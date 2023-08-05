@@ -21,9 +21,22 @@ const TaskSlice = createSlice({
         console.warn(`Can't (id: ${action.payload}) as it's not in the tasks!`);
       }
     },
+    editTask: (state, action) => {
+      const index = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (index >= 0) {
+        state.items[index] = action.payload.updatedTask;
+      } else {
+        console.warn(
+          `Can't edit task (id: ${action.payload.id}) as it's not in the tasks!`
+        );
+      }
+    },
   },
 });
 
-export const { addToTask, emptyTask, removeFromTask } = TaskSlice.actions;
+export const { addToTask, emptyTask, removeFromTask, editTask } =
+  TaskSlice.actions;
 
 export default TaskSlice.reducer;

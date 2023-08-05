@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromTask } from "../toolkit/Reducer";
+import { removeFromTask, editTask } from "../toolkit/Reducer";
 import { CancelIcon, DeleteIcon, EditIcon, UpdateIcon } from "../icons/icons";
 
 function Tasks() {
@@ -24,6 +24,27 @@ function Tasks() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(task));
   }, [task]);
+
+  function handleEdit(id) {
+    console.log("edit");
+    const taskToEdit = task.find((item) => item.id === id);
+    setEditedTask(taskToEdit);
+  }
+
+  function handleUpdate() {
+    try {
+      dispatch(editTask({ id: editedTask.id, updatedTask: editedTask }));
+
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      const updatedTasks = tasks.map((task) =>
+        task.id === editedTask.id ? editedTask : task
+      );
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      setEditedTask(null);
+    } catch (error) {
+      console.log("failed to update");
+    }
+  }
 
   return (
     <div className=" p-5">
@@ -95,8 +116,16 @@ function Tasks() {
                     <h1>Actions</h1>
                   </div>
                   <div className="flex flex-row gap-2">
-                    <button className="rounded-full border border-sky-300 p-2 ">
-                      <UpdateIcon />
+                    <button
+                      className="rounded-full border border-sky-300 p-2"
+                      onClick={handleUpdate}
+                    >
+                      <div className="flex gap-2 items-center">
+                        <span>Save</span>
+                        <span>
+                          <UpdateIcon />
+                        </span>
+                      </div>
                     </button>
                     <button
                       className="rounded-full border border-sky-300 p-2 "
@@ -138,7 +167,10 @@ function Tasks() {
                     >
                       <DeleteIcon />
                     </button>
-                    <button className="rounded-full border border-sky-300 p-2">
+                    <button
+                      className="rounded-full border border-sky-300 p-2"
+                      onClick={() => handleEdit(item.id)}
+                    >
                       <EditIcon />
                     </button>
                   </div>
