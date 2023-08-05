@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToTask, emptyTask } from "../toolkit/Reducer";
-import { CreateIcon } from "../icons/icons";
+import { CreateIcon } from "../icons/Icons";
 
 function CreateTasks() {
   const dispatch = useDispatch();

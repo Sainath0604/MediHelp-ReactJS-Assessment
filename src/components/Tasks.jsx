@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromTask, editTask } from "../toolkit/Reducer";
-import { CancelIcon, DeleteIcon, EditIcon, UpdateIcon } from "../icons/icons";
+import { CancelIcon, DeleteIcon, EditIcon, UpdateIcon } from "../icons/Icons";
 
 function Tasks() {
   const task = useSelector((state) => state.task.items);
