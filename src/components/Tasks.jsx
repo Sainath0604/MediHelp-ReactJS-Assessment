@@ -1,11 +1,29 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromTask } from "../toolkit/Reducer";
 import { CancelIcon, DeleteIcon, EditIcon, UpdateIcon } from "../icons/icons";
 
 function Tasks() {
   const task = useSelector((state) => state.task.items);
+  const dispatch = useDispatch();
 
   const [editedTask, setEditedTask] = useState(null);
+
+  function handleDelete(id) {
+    try {
+      dispatch(removeFromTask(id));
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      const updatedTasks = tasks.filter((task) => task.id !== id);
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      console.log("removed");
+    } catch (error) {
+      console.log("failed to remove");
+    }
+  }
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(task));
+  }, [task]);
 
   return (
     <div className=" p-5">
@@ -114,7 +132,10 @@ function Tasks() {
                     <h1>Actions</h1>
                   </div>
                   <div className="flex flex-row gap-2">
-                    <button className="rounded-full border border-sky-300 p-2">
+                    <button
+                      className="rounded-full border border-sky-300 p-2"
+                      onClick={() => handleDelete(item.id)}
+                    >
                       <DeleteIcon />
                     </button>
                     <button className="rounded-full border border-sky-300 p-2">

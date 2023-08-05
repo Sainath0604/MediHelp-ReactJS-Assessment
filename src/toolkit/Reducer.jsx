@@ -13,9 +13,17 @@ const TaskSlice = createSlice({
     emptyTask: (state) => {
       state.items = [];
     },
+    removeFromTask: (state, action) => {
+      const index = state.items.findIndex((item) => item.id === action.payload);
+      if (index >= 0) {
+        state.items.splice(index, 1);
+      } else {
+        console.warn(`Can't (id: ${action.payload}) as it's not in the tasks!`);
+      }
+    },
   },
 });
 
-export const { addToTask, emptyTask } = TaskSlice.actions;
+export const { addToTask, emptyTask, removeFromTask } = TaskSlice.actions;
 
 export default TaskSlice.reducer;
