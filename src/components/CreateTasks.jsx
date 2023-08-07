@@ -68,7 +68,9 @@ function CreateTasks() {
     <div className=" lg:w-11/12 p-5 flex justify-center">
       <div className="mb-2 flex  min-w-full flex-col gap-y-2 p-2 bg-[#f6f9fa] rounded-lg ">
         <div className="flex justify-center p-1">
-          <h1 className="text-[#ee7c68] text-2xl">Create tasks</h1>
+          <h1 className="text-[#ee7c68] text-2xl font-semibold">
+            Create tasks
+          </h1>
         </div>
         <div className="flex flex-col items-center text-[#b44e3c] gap-y-2 p-2">
           <div>
